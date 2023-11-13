@@ -12,7 +12,7 @@ function createWindow () {
   })
 
   // Load a website into the window
-  win.loadURL('https://www.office.com')
+  win.loadURL('https://www.microsoft365.com')
 }
 
 // Create the window when Electron is ready
