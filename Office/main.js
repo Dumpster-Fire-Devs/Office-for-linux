@@ -8,7 +8,8 @@ function createWindow () {
     height: 600,
     webPreferences: {
       nodeIntegration: true,
-    }
+    },
+    fullscreen: true
   })
 
   // Load a website into the window
