@@ -1,6 +1,6 @@
 {
     "dest": "dist/installers/",
-    "icon": "office.png",
+    "icon": "office-tux.png",
     "categories": [
       "Utility"
     ],
