@@ -1,4 +1,4 @@
-const { app, BrowserWindow, Notification, ipcMain } = require('electron');
+const { app, BrowserWindow, Notification, ipcMain, ipcRenderer } = require('electron');
 const Imap = require('imap');
 const open = require('open');
 
@@ -11,7 +11,7 @@ function createWindow() {
 
 app.on('ready', createWindow);
 
-ipcMain.on('login', (event, data) => {
+ipcRenderer.on('login', (event, data) => {
   const { email, password } = data;
 
   const imap = new Imap({
