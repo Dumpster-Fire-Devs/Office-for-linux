@@ -1,7 +1,7 @@
 {
-  "name": "microsoft-office",
+  "name": "Outlook",
   "version": "1.0.0",
-  "description": "Making Microsoft Office compatible with Linux",
+  "description": "Making Outlook compatible with Linux",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
