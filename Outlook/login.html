@@ -36,6 +36,10 @@
 
             ipcRenderer.send('login', { email, password });
         });
+        
+        ipcRenderer.on('login-success', () => {
+            window.close();
+        });
     </script>
 </body>
 </html>
