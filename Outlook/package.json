@@ -1,5 +1,5 @@
 {
-  "name": "Outlook",
+  "name": "outlook",
   "version": "1.0.0",
   "description": "Making Outlook compatible with Linux",
   "main": "main.js",
@@ -9,5 +9,10 @@
   },
   "keywords": [],
   "author": "MEGA-Dawg68",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "electron": "^27.1.0",
+    "imap": "^0.8.19",
+    "open": "^9.1.0"
+  }
 }
