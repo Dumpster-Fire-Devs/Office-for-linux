@@ -1,4 +1,4 @@
-const { app, BrowserWindow, Notification, remote, ipcRenderer } = require('electron');
+const { app, BrowserWindow, Notification, remote, ipcRenderer, ipcMain, Tray } = require('electron');
 const Imap = require('imap');
 const open = require('open');
 
@@ -9,7 +9,19 @@ function createWindow() {
   mainWindow.loadURL('file://' + __dirname + '/login.html');
 }
 
-app.on('ready', createWindow);
+app.on('ready', () => {
+  createWindow();
+
+  tray = new Tray('outlook.png');
+  const contextMenu = Menu.buildFromTemplate([
+    { label: 'Item1', type: 'radio' },
+    { label: 'Item2', type: 'radio' },
+    { label: 'Item3', type: 'radio', checked: true },
+    { label: 'Item4', type: 'radio' }
+  ]);
+  tray.setToolTip('This is my application.');
+  tray.setContextMenu(contextMenu);
+});
 
 ipcRenderer.on('login', (event, data) => {
   const { email, password } = data;
@@ -17,7 +29,7 @@ ipcRenderer.on('login', (event, data) => {
   const imap = new Imap({
     user: email,
     password: password,
-    host: 'outlook.office365.com',
+    host: 'https://outlook.live.com',
     port: 993,
     tls: true
   });
