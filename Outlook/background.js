@@ -1,4 +1,4 @@
-const { app, BrowserWindow, Notification, ipcMain, ipcRenderer } = require('electron');
+const { app, BrowserWindow, Notification, remote, ipcRenderer } = require('electron');
 const Imap = require('imap');
 const open = require('open');
 
@@ -35,13 +35,18 @@ ipcRenderer.on('login', (event, data) => {
           body: 'Click to open the app'
         });
 
-        notification.show();
+                notification.show();
 
-        notification.on('click', () => {
-          mainWindow.show();
-        });
-      });
-    });
+                notification.on('click', () => {
+                  let mainWindow = remote.BrowserWindow.getAllWindows()[0];
+                  if (mainWindow) {
+                    if (mainWindow.isMinimized()) mainWindow.restore();
+                    mainWindow.focus();
+                  }
+                });
+              });
+          });
+
   });
 
   imap.once('error', function(err) {
