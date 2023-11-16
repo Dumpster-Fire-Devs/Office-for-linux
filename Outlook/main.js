@@ -1,7 +1,5 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
-
-let mainWindow;
-let backgroundWindow;
+let loginWindow;
 
 function createWindow () {
   mainWindow = new BrowserWindow({
@@ -13,7 +11,7 @@ function createWindow () {
     fullscreen: true
   });
 
-  mainWindow.loadURL('https://www.outlook.office365.com');
+  mainWindow.loadURL('https://outlook.live.com');
 
   backgroundWindow = new BrowserWindow({
     show: false,
@@ -23,6 +21,16 @@ function createWindow () {
   });
 
   backgroundWindow.loadURL('file://' + __dirname + '/background.html');
+
+  loginWindow = new BrowserWindow({
+    width: 800,
+    height: 600,
+    webPreferences: {
+      nodeIntegration: true,
+    }
+  });
+
+  loginWindow.loadURL('file://' + __dirname + '/login.html');
 }
 
 ipcMain.on('login', (event, data) => {
@@ -34,11 +42,5 @@ app.whenReady().then(createWindow);
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     app.quit();
-  }
-});
-
-app.on('activate', () => {
-  if (BrowserWindow.getAllWindows().length === 0) {
-    createWindow();
   }
 });
