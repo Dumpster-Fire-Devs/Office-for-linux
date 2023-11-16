@@ -39,6 +39,8 @@ ipcRenderer.on('login', (event, data) => {
   }
 
   imap.once('ready', function() {
+    mainWindow.webContents.send('login-success');
+  
     openInbox(function(err, box) {
       if (err) throw err;
       imap.on('mail', function() {
